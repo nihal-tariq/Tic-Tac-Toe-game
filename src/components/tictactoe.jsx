@@ -7,8 +7,23 @@ const TicTacToe = ()=>{
      let[count, setCount] = useState(0);
      let[lock,setLock] = useState(false);
      let titleRef = useRef(null);
+     let box1 = useRef(null);
+     let box2 = useRef(null);
+     let box3 = useRef(null);
+     let box4 = useRef(null);
+     let box5 = useRef(null);
+     let box6 = useRef(null);
+     let box7 = useRef(null);
+     let box8 = useRef(null);
+     let box9 = useRef(null);
 
-     const toggle = (e, num)=>{
+
+
+     let box_array = [box1,box2,box3,box4,box5,box6,box7,box8,box9];
+
+
+
+    const toggle = (e, num)=>{
          if(lock) {
              return 0;
          }
@@ -65,33 +80,43 @@ const TicTacToe = ()=>{
          }
      }
 
+     const reset = ()=>{
+         setLock(false);
+         data = ["","","","","","","","",""];
+         titleRef.current.innerHTML = `Tic Tac Toe`;
+         box_array.map((e)=>{
+             e.current.innerHTML = "";
+         })
+
+     }
+
 
     return(<div className="h-screen flex flex-col justify-center items-center bg-cyan-950 gap-8">
         <div className=" flex flex-col text-center">
             <h1 className="text-white mt-0 mb-6 text-3xl flex items-center justify-center" ref={titleRef}>Tic Tac Toe</h1>
             <div className="m-auto flex h-min w-min">
                 <div className="row1">
-                    <div className="Box flex h-24 w-24 bg-cyan-700 rounded border-gray-800 border-4 hover:bg-cyan-500 cursor-pointer" onClick={(e)=>{toggle(e,0)}}></div>
-                    <div className="Box flex h-24 w-24 bg-cyan-700 rounded border-gray-800 border-4 hover:bg-cyan-500 cursor-pointer" onClick={(e)=>{toggle(e,1)}}  ></div>
-                    <div className="Box flex h-24 w-24 bg-cyan-700 rounded border-gray-800 border-4 hover:bg-cyan-500 cursor-pointer"  onClick={(e)=>{toggle(e,2)}} ></div>
+                    <div ref={box1} className="Box flex h-24 w-24 bg-cyan-700 rounded border-gray-800 border-4 hover:bg-cyan-500 cursor-pointer" onClick={(e)=>{toggle(e,0)}}></div>
+                    <div ref={box2} className="Box flex h-24 w-24 bg-cyan-700 rounded border-gray-800 border-4 hover:bg-cyan-500 cursor-pointer" onClick={(e)=>{toggle(e,1)}}  ></div>
+                    <div ref={box3} className="Box flex h-24 w-24 bg-cyan-700 rounded border-gray-800 border-4 hover:bg-cyan-500 cursor-pointer"  onClick={(e)=>{toggle(e,2)}} ></div>
 
                 </div>
                 <div className="row2">
-                    <div className="Box flex h-24 w-24 bg-cyan-700 rounded border-gray-800 border-4 hover:bg-cyan-500 cursor-pointer" onClick={(e)=>{toggle(e,3)}}></div>
-                    <div className="Box flex h-24 w-24 bg-cyan-700 rounded border-gray-800 border-4 hover:bg-cyan-500 cursor-pointer" onClick={(e)=>{toggle(e,4)}}></div>
-                    <div className="Box flex h-24 w-24 bg-cyan-700 rounded border-gray-800 border-4 hover:bg-cyan-500 cursor-pointer" onClick={(e)=>{toggle(e,5)}}></div>
+                    <div ref={box4} className="Box flex h-24 w-24 bg-cyan-700 rounded border-gray-800 border-4 hover:bg-cyan-500 cursor-pointer" onClick={(e)=>{toggle(e,3)}}></div>
+                    <div ref={box5} className="Box flex h-24 w-24 bg-cyan-700 rounded border-gray-800 border-4 hover:bg-cyan-500 cursor-pointer" onClick={(e)=>{toggle(e,4)}}></div>
+                    <div ref={box6} className="Box flex h-24 w-24 bg-cyan-700 rounded border-gray-800 border-4 hover:bg-cyan-500 cursor-pointer" onClick={(e)=>{toggle(e,5)}}></div>
 
                 </div>
                 <div className="row3">
-                    <div className="Box flex h-24 w-24 bg-cyan-700 rounded border-gray-800 border-4 hover:bg-cyan-500 cursor-pointer" onClick={(e)=>{toggle(e,6)}}></div>
-                    <div className="Box flex h-24 w-24 bg-cyan-700 rounded border-gray-800 border-4 hover:bg-cyan-500 cursor-pointer" onClick={(e)=>{toggle(e,7)}}></div>
-                    <div className="Box flex h-24 w-24 bg-cyan-700 rounded border-gray-800 border-4 hover:bg-cyan-500 cursor-pointer" onClick={(e)=>{toggle(e,8)}}></div>
+                    <div ref={box7} className="Box flex h-24 w-24 bg-cyan-700 rounded border-gray-800 border-4 hover:bg-cyan-500 cursor-pointer" onClick={(e)=>{toggle(e,6)}}></div>
+                    <div ref={box8} className="Box flex h-24 w-24 bg-cyan-700 rounded border-gray-800 border-4 hover:bg-cyan-500 cursor-pointer" onClick={(e)=>{toggle(e,7)}}></div>
+                    <div ref={box9} className="Box flex h-24 w-24 bg-cyan-700 rounded border-gray-800 border-4 hover:bg-cyan-500 cursor-pointer" onClick={(e)=>{toggle(e,8)}}></div>
 
                 </div>
             </div>
         </div>
 
-        <button className="w-20 h-10 outline-0 cursor-pointer text-white rounded-xl bg-blue-900 hover:bg-blue-100 hover:text-cyan-950 " >Reset</button>
+        <button onClick={()=>{reset()}} className="w-20 h-10 outline-0 cursor-pointer text-white rounded-xl bg-blue-900 hover:bg-blue-100 hover:text-cyan-950 " >Reset</button>
 
     </div>)
 }
